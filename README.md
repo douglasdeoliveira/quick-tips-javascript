@@ -16,6 +16,7 @@
 
 ## Destructuring
 
+**********************************
 ### Objects
 
 :poop: BAD
@@ -72,6 +73,24 @@ console.log(myName, myAge);
 // Joe, 24
 ```
 
+#### Property "Exclusion"
+
+:poop: BAD
+```javascript
+Foo.prototype.close = function() {
+  delete this.property_name;
+};
+```
+
+:heavy_check_mark: GOOD
+
+```javascript
+Foo.prototype.close = function() {
+  this.property_name = null;
+};
+```
+
+**********************************
 ### Arrays
 
 :poop: BAD
@@ -100,4 +119,61 @@ console.log(third); // Nill
 const [, , third] = names;
 
 console.log(third); // Nill
+```
+
+**********************************
+### Conditions (shortned)
+
+:poop: BAD
+
+```javascript
+const name = 'Douglas';
+let head;
+if(name === 'Douglas') {
+  head = 'bald';
+} else {
+  head = 'hairy';
+}
+```
+
+:heavy_check_mark: GOOD
+
+```javascript
+const name = 'Douglas';
+const head = (name === 'Douglas') ? 'bald' : 'hairy';
+```
+
+**********************************
+### Variable Declaration (let)
+
+
+The ```let``` expression allows you to limit the scope of a variable declared only for that expression.
+
+```javascript
+
+/*Example 1:*/
+function foo() {
+  var a = 5;
+  var b = 10;
+
+  if (a === 5) {
+    let a = 4; // let belongs to "if" scope
+    var b = 1; // var belongs to "foo" scope
+
+    console.log(a);  // 4
+    console.log(b);  // 1
+  } 
+
+  console.log(a); // 5
+  console.log(b); // 1
+}
+
+/*Example 2*/
+function bar() {
+  for (let i = 0; i<10; i++) {
+    alert(i); // 1, 2, 3, 4 ... 9
+  }
+
+  alert(i); // ERROR: i is not defined
+}
 ```
