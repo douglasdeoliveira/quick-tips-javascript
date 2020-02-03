@@ -13,13 +13,14 @@
 ## Contents
 
 - [Destructuring](#destructuring)
+- [Conditional (ternary) operator](#conditional-ternary-operator)
+- [Variable Declaration](#variable-declaration)
 
 ## Destructuring
 
-**********************************
 ### Objects
 
-:poop: BAD
+:poop: **BAD**
 
 ```javascript
 const person = {
@@ -43,7 +44,7 @@ console.log(name, age);
 // Joe, 24
 ```
 
-:heavy_check_mark: GOOD
+:heavy_check_mark: **GOOD**
 
 ```javascript
 const person = {
@@ -73,27 +74,9 @@ console.log(myName, myAge);
 // Joe, 24
 ```
 
-#### Property "Exclusion"
-
-:poop: BAD
-```javascript
-Foo.prototype.close = function() {
-  delete this.property_name;
-};
-```
-
-:heavy_check_mark: GOOD
-
-```javascript
-Foo.prototype.close = function() {
-  this.property_name = null;
-};
-```
-
-**********************************
 ### Arrays
 
-:poop: BAD
+:poop: **BAD**
 
 ```javascript
 const names = ['Douglas', 'Thiago', 'Nill'];
@@ -103,7 +86,7 @@ console.log(names[1]); // Thiago
 console.log(names[2]); // Nill
 ```
 
-:heavy_check_mark: GOOD
+:heavy_check_mark: **GOOD**
 
 ```javascript
 const names = ['Douglas', 'Thiago', 'Nill'];
@@ -121,37 +104,42 @@ const [, , third] = names;
 console.log(third); // Nill
 ```
 
-**********************************
-### Conditions (shortned)
+---
 
-:poop: BAD
+## Conditional (ternary) operator
+
+:poop: **BAD**
 
 ```javascript
 const name = 'Douglas';
 let head;
-if(name === 'Douglas') {
+
+if (name === 'Douglas') {
   head = 'bald';
 } else {
   head = 'hairy';
 }
 ```
 
-:heavy_check_mark: GOOD
+:heavy_check_mark: **GOOD**
 
 ```javascript
 const name = 'Douglas';
-const head = (name === 'Douglas') ? 'bald' : 'hairy';
+const head = name === 'Douglas' ? 'bald' : 'hairy';
 ```
 
-**********************************
-### Variable Declaration (let)
+---
 
+## Variable Declaration
 
-The ```let``` expression allows you to limit the scope of a variable declared only for that expression.
+### Let
+
+The `let` expression allows you to limit the scope of a variable declared only for that expression.
 
 ```javascript
-
-/*Example 1:*/
+/*
+ * Example 1
+ */
 function foo() {
   var a = 5;
   var b = 10;
@@ -160,17 +148,19 @@ function foo() {
     let a = 4; // let belongs to "if" scope
     var b = 1; // var belongs to "foo" scope
 
-    console.log(a);  // 4
-    console.log(b);  // 1
-  } 
+    console.log(a); // 4
+    console.log(b); // 1
+  }
 
   console.log(a); // 5
   console.log(b); // 1
 }
 
-/*Example 2*/
+/*
+ * Example 2
+ */
 function bar() {
-  for (let i = 0; i<10; i++) {
+  for (let i = 0; i < 10; i++) {
     alert(i); // 1, 2, 3, 4 ... 9
   }
 
